@@ -31,12 +31,21 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.put('/:id',async (req, res, next) => {
+  try{
+    const data = await Account.updateById(req.params.id, req.body)
+    res.json(data)
+  }catch(err){
+    next(err)
+  }
 });
 
-router.delete('/:id', (req, res, next) => {
-  // DO YOUR MAGIC
+router.delete('/:id',async (req, res, next) => {
+  try{
+    const data = await Account.deleteById(req.params.id)
+  }catch(err){
+    next(err)
+  }
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
