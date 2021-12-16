@@ -31,7 +31,7 @@ exports.checkAccountNameUnique = async (req, res, next) => {
     .first()
 
     if(existingName){
-      next ({ status: 400, message: "that name is taken"})
+      res.status(400).json({message: "that name is taken"})
     } else {
       next()
     }
